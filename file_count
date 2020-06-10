@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+import os;
+
+#统计文件数函数
+def CountFolder(rootFolder, excelFile):
+	#判断路径是否存在
+    if not os.path.exists(rootFolder):
+        print("ERROR: Folder not exist!!!!");
+        quit();
+
+    print("正在处理："+rootFolder);
+    for root, dirs, filenames in os.walk(rootFolder):
+        excelFile.write(root + "," + str(len(filenames))+"\n");
+        print(rootFolder+"_文件数："+str(len(filenames)));
+        for subFolderName in dirs:
+            subFolder = root + '\\' + subFolderName;
+            CountFolder(subFolder , excelFile);
+
+if __name__ == '__main__':
+    # 输入所要统计的文件夹路径
+    rootFolder = input('Please input FTP path:' + '\n')
+    excelFile = open(os.path.dirname(os.path.abspath(__file__))+'/ftp_count.csv', 'w')  # 输出文件路径
+    excelFile.write("文件夹,文件数量\n");
+    CountFolder(rootFolder, excelFile)  # 调用函数
+    excelFile.close();
