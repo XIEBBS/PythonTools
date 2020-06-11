@@ -20,8 +20,8 @@ def CountFolder(rootFolder, excelFile):
 
 if __name__ == '__main__':
     # 输入所要统计的文件夹路径
-    rootFolder = input('Please input FTP path:' + '\n')
-    excelFile = open(os.path.dirname(os.path.abspath(__file__))+'/ftp_count.csv', 'w')  # 输出文件路径
+    rootFolder = input('Please input FTP path:' + '\n');
+    excelFile = open(os.path.dirname(os.path.abspath(__file__))+'/ftp_count.csv', 'w');  # 输出文件路径
     excelFile.write("文件夹,文件数量\n");
-    CountFolder(rootFolder, excelFile)  # 调用函数
+    CountFolder(rootFolder, excelFile);  # 调用函数
     excelFile.close();
